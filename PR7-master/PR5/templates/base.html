@@ -1,0 +1,40 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <title>Блог</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="{%url 'home'%}">Джанго блог</a>
+        </h1>
+        <h2>
+        <a href="{%url 'post_new'%}">+ Новая запись блога</a>
+    </h2>
+
+    </header>
+
+    {% if user.is_authenticated %}
+        <p>Приветствуем, {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <p>Вы не вошли в систему</p>
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+
+
+    {% block content %}
+
+
+    <div class="container">
+
+        {%endblock content%}
+    </div>
+</body>
+</html>
